@@ -1,7 +1,6 @@
-# Kafka-Data-Pipeline
+# Project: Kafka MySQL → Postgres CDC Demo
 
-A Change Data Capture (CDC) pipeline built using Apache Kafka and Kafka Connect to stream data in real-time from a **MySQL** database (`ecomm`) to a **PostgreSQL** database (`ecomm`) and the using  pipeline is set up with two connectors and uses plugin-based configuration to enable CDC via Kafka.
-
+This project demonstrates how to use Docker Compose to run MySQL, Postgres, Kafka, Kafka Connect, and Kafka UI to stream data from MySQL to Postgres in real-time.
 ---
 
 ## 📌 Project Summary
@@ -15,31 +14,35 @@ A Change Data Capture (CDC) pipeline built using Apache Kafka and Kafka Connect 
 - 📍 **Next Step**: Add support for **multiple sinks** (e.g., MongoDB, Elasticsearch) to fan out the data stream
 
 ---
+## Workflow:
 
-## ⚙️ Technologies Used
+Start all services using Docker Compose.
 
-- Apache Kafka
-- Kafka Connect
-- MySQL
-- PostgreSQL
-- Docker & Docker Compose
+Create source and sink connections (MySQL → Kafka → Postgres).
 
----
+Insert/update/delete data in MySQL.
 
-## 🚀 How to Run
+See the changes instantly replicated in Postgres via Kafka.
 
-1. **Clone the repository and go to the working directory**  
+## Docker Compose
 
-   > 💡 *Make sure Docker Desktop or Docker Engine is running before continuing.*
-   ```bash
-   git clone https://github.com/your-username/Kafka-Data-Pipeline.git
+All services are defined in dc.yaml. 
 
-   cd Kafka-Data-Pipeline/path/to/your-working-directory
+To start them:
+docker compose -f dc.yaml up -d
 
-   docker compose -f dc.yaml up -d
+Services included:
 
-   docker ps
-   ```
+mysql2 (source DB)
+
+postgres (sink DB)
+
+kafka & ksqldb-server
+
+kafka-connect
+
+kafka-ui
+
    
 ## 📋 Included Services
 
@@ -91,29 +94,31 @@ You can do this via CLI or any database GUI:
 CREATE DATABASE ecomm;
 ```
 
-## 🔌 Launch Kafka Connectors
+## Connectors
 
-After starting all services, run the following commands to deploy the **MySQL** and **PostgreSQL** connectors:
+We used ready-made connector JSON files:
 
-### 🐬 Register MySQL Connector
+mysql-connect.json
 
-```bash
-curl -sS -X POST -H "Accept: application/json" -H "Content-Type: application/json" -d @connectors/mysql/mysql-connect.json http://localhost:8083/connectors
+pg-connect.json
 
-```
+Run connectors with curl:
 
-### 🐘 Register PostgreSQL Connector
-```bash
-curl -sS -X POST -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:8083/connectors -d @connectors/pg/pg-connect.json
-```
+curl -X POST -H "Content-Type: application/json" \
+     -d @mysql-connect.json http://localhost:8083/connectors
+
+curl -X POST -H "Content-Type: application/json" \
+     -d @pg-connect.json http://localhost:8083/connectors
+
+
+This establishes the data pipeline MySQL → Kafka → Postgres.
+
 
 ### ✅ Verify Connectors Are Running
 Open the following URL in your browser to check the status of both connectors:
 ```bash
 http://localhost:8083/connectors?expand=status
 ```
-You should see both connectors listed with their status as "RUNNING"
-![connectors.png](Images/image1.png)
 
 ## 🔄 CDC in Action
 
