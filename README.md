@@ -147,6 +147,4 @@ The data is now flowing successfully from the MySQL source database to the Postg
 
 ![postgres.png](Images/image3.png)
 
-### 🙏 Acknowledgements
 
-Special thanks to **Eng. Karim Tawfik** for his support and guidance throughout this project 
