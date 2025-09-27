@@ -1,8 +1,8 @@
+-- Active: 1758900604122@@127.0.0.1@3305@ecomm
+
+
 CREATE SCHEMA IF NOT EXISTS ecomm;
 USE ecomm;
-
-GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
-GRANT ALL PRIVILEGES ON ecomm.* TO 'myuser'@'%';
 
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -62,3 +62,5 @@ VALUES
     (1, 2, 1, 15.49),
     (2, 1, 3, 32.97),
     (3, 3, 5, 29.95);
+
+

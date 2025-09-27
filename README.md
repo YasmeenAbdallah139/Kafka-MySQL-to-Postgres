@@ -64,8 +64,8 @@ You can connect to the MySQL and PostgreSQL containers using VS Code with a data
 |-----------|-----------|
 | Host      | 127.0.0.1 |
 | Port      | 3305      |
-| Username  | root      |
-| Password  | root      |
+| Username  | myuser    |
+| Password  | mypassword|
 | Database  | mydb      |
 
 ### 🐘 PostgreSQL Connection (Port: 5432)
@@ -98,20 +98,13 @@ After starting all services, run the following commands to deploy the **MySQL** 
 ### 🐬 Register MySQL Connector
 
 ```bash
-curl -sS -X POST \
-  -H "Accept: application/json" \
-  -H "Content-Type: application/json" \
-  http://localhost:8083/connectors \
-  -d @connectors/mysql/mysql-connect.json
+curl -sS -X POST -H "Accept: application/json" -H "Content-Type: application/json" -d @connectors/mysql/mysql-connect.json http://localhost:8083/connectors
+
 ```
 
 ### 🐘 Register PostgreSQL Connector
 ```bash
-curl -sS -X POST \
-  -H "Accept: application/json" \
-  -H "Content-Type: application/json" \
-  http://localhost:8083/connectors \
-  -d @connectors/pg/pg-connect.json
+curl -sS -X POST -H "Accept: application/json" -H "Content-Type: application/json" http://localhost:8083/connectors -d @connectors/pg/pg-connect.json
 ```
 
 ### ✅ Verify Connectors Are Running
