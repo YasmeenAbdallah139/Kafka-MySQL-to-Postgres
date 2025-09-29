@@ -153,13 +153,14 @@ This confirms that:
 ![usertable_mysql.png](Images/image4.png)
 
 
-
 **here kakfa stored each single edit to the data**
+
 ![usertopic_kafka.png](Images/image5.png)
 
 
 
 **and finally this this the auto reflection in postgres**
+
 ![usertable_kafka.png](Images/image6.png)
 
 
