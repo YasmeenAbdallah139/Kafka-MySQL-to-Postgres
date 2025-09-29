@@ -143,22 +143,23 @@ This confirms that:
 
 ## 🎯 End-to-End Pipeline Verification
 
-The data is now flowing successfully from the MySQL source database to the PostgreSQL target database.
+**The data is now flowing successfully from the MySQL source database to the PostgreSQL target database.**
 
 ![postgres.png](Images/image3.png)
 
 ## CDC 
-I added new row in user data in mysql 
+**I added new row in user data in mysql**
+
 ![usertable_mysql.png](Images/image4.png)
 
 
 
-and here kakfa stored each single edit to the data
+**here kakfa stored each single edit to the data**
 ![usertopic_kafka.png](Images/image5.png)
 
 
 
-and finally this this the auto reflection in postgres
+**and finally this this the auto reflection in postgres**
 ![usertable_kafka.png](Images/image6.png)
 
 
