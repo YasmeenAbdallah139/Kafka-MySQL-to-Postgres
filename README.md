@@ -153,9 +153,11 @@ This confirms that:
 ![usertable_mysql.png](Images/image4.png)
 
 
+
 **here kakfa stored each single edit to the data**
 
 ![usertopic_kafka.png](Images/image5.png)
+
 
 
 
